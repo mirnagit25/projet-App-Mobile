@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'create_ad_page.dart';
+import 'login_page.dart'; 
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -182,8 +184,11 @@ class ProfileTab extends StatelessWidget {
             OutlinedButton.icon(
               icon: const Icon(Icons.logout),
               onPressed: () {
-                // Retour à la page de connexion
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                // LA NOUVELLE LOGIQUE EST ICI
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  (Route<dynamic> route) => false, // Cette ligne supprime TOUT l'historique
+                );
               },
               label: const Text('Se déconnecter'),
             )
